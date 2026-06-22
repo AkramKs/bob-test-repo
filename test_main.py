@@ -41,13 +41,26 @@ def reset_db():
 class TestGroceryStoreAPI:
 
     def test_root_endpoint(self):
-        """Test the root endpoint returns welcome message."""
+        """Test the root endpoint returns the index.html page."""
         response = client.get("/")
         assert response.status_code == 200
-        data = response.json()
-        assert "message" in data
-        assert "Grocery Store API" in data["message"]
-        assert "docs" in data
+        assert "text/html" in response.headers["content-type"]
+        assert "<h1>Loading...</h1>" in response.text
+
+    def test_static_files_accessible(self):
+        """Test that static files are served correctly."""
+        # Test CSS file
+        response = client.get("/static/css/styles.css")
+        assert response.status_code == 200
+
+        # Test JS file
+        response = client.get("/static/js/app.js")
+        assert response.status_code == 200
+
+    def test_docs_endpoint(self):
+        """Test the /docs endpoint is still accessible."""
+        response = client.get("/docs")
+        assert response.status_code == 200
 
     def test_create_product(self):
         """Test creating a new grocery product."""

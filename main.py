@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List
 
@@ -12,6 +14,10 @@ app = FastAPI(
 )
 
 
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
 # Dependency to get DB session
 def get_db():
     db = SessionLocal()
@@ -22,8 +28,8 @@ def get_db():
 
 
 @app.get("/")
-def root():
-    return {"message": "Welcome to the Grocery Store API", "docs": "/docs"}
+async def serve_frontend():
+    return FileResponse("static/index.html")
 
 
 @app.post("/products/", response_model=ProductResponse, status_code=status.HTTP_201_CREATED)
