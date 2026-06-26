@@ -5,7 +5,8 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from models import SessionLocal, Product as ProductModel
-from schemas import ProductCreate, ProductUpdate, ProductResponse
+from schemas import ProductCreate, ProductUpdate, ProductResponse, AIDescribeRequest, AIDescribeResponse
+from deepseek_client import generate_product_description
 
 app = FastAPI(
     title="Grocery Store API",
@@ -30,6 +31,40 @@ def get_db():
 @app.get("/")
 async def serve_frontend():
     return FileResponse("static/index.html")
+
+
+@app.post("/products/ai-describe", response_model=AIDescribeResponse)
+def ai_describe_product(request: AIDescribeRequest):
+    """Generate an AI-powered marketing description for a grocery product.
+
+    Accepts a product name, price, and optional category, then calls the
+    DeepSeek API to produce a short, enticing description suitable for display
+    in an online grocery store.
+
+    If the AI service is unavailable or returns an unexpected response the
+    endpoint still returns HTTP 200 with a pre-defined fallback description so
+    that clients are never blocked by a third-party service outage.
+
+    **Example request body**::
+
+        {
+            "name": "Organic Avocado",
+            "price": 2.99,
+            "category": "Produce"
+        }
+
+    **Example response**::
+
+        {
+            "description": "Enjoy the creamy richness of our Organic Avocados..."
+        }
+    """
+    description = generate_product_description(
+        name=request.name,
+        price=request.price,
+        category=request.category,
+    )
+    return AIDescribeResponse(description=description)
 
 
 @app.post("/products/", response_model=ProductResponse, status_code=status.HTTP_201_CREATED)

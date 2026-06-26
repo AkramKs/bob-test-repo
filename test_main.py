@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -247,3 +248,105 @@ class TestGroceryStoreAPI:
         # Verify empty
         list_resp2 = client.get("/products/")
         assert len(list_resp2.json()) == 0
+
+
+class TestAIDescribeEndpoint:
+    """Tests for the POST /products/ai-describe endpoint."""
+
+    def test_ai_describe_returns_200_with_ai_description(self):
+        """Test that the endpoint returns 200 and a description when the AI call succeeds."""
+        ai_generated = "This luscious Organic Avocado from the Produce aisle is perfectly ripe and packed with healthy fats."
+        with patch("main.generate_product_description", return_value=ai_generated) as mock_fn:
+            response = client.post(
+                "/products/ai-describe",
+                json={"name": "Organic Avocado", "price": 2.99, "category": "Produce"},
+            )
+        assert response.status_code == 200
+        data = response.json()
+        assert "description" in data
+        assert data["description"] == ai_generated
+        mock_fn.assert_called_once_with(name="Organic Avocado", price=2.99, category="Produce")
+
+    def test_ai_describe_returns_200_with_fallback_on_ai_failure(self):
+        """Test that the endpoint still returns 200 when the AI call returns a fallback description."""
+        fallback = "Enjoy our Organic Avocado from the Produce category, available at the great price of $2.99."
+        with patch("main.generate_product_description", return_value=fallback) as mock_fn:
+            response = client.post(
+                "/products/ai-describe",
+                json={"name": "Organic Avocado", "price": 2.99, "category": "Produce"},
+            )
+        assert response.status_code == 200
+        data = response.json()
+        assert "description" in data
+        assert data["description"] == fallback
+        mock_fn.assert_called_once_with(name="Organic Avocado", price=2.99, category="Produce")
+
+    def test_ai_describe_default_category(self):
+        """Test that category defaults to 'Other' when not provided."""
+        ai_generated = "A wonderful product at a great value."
+        with patch("main.generate_product_description", return_value=ai_generated) as mock_fn:
+            response = client.post(
+                "/products/ai-describe",
+                json={"name": "Mystery Item", "price": 1.50},
+            )
+        assert response.status_code == 200
+        data = response.json()
+        assert data["description"] == ai_generated
+        mock_fn.assert_called_once_with(name="Mystery Item", price=1.50, category="Other")
+
+    def test_ai_describe_invalid_price_rejected(self):
+        """Test that a non-positive price is rejected with HTTP 422."""
+        response = client.post(
+            "/products/ai-describe",
+            json={"name": "Bad Product", "price": 0},
+        )
+        assert response.status_code == 422
+
+    def test_ai_describe_negative_price_rejected(self):
+        """Test that a negative price is rejected with HTTP 422."""
+        response = client.post(
+            "/products/ai-describe",
+            json={"name": "Bad Product", "price": -5.00},
+        )
+        assert response.status_code == 422
+
+    def test_ai_describe_empty_name_rejected(self):
+        """Test that an empty product name is rejected with HTTP 422."""
+        response = client.post(
+            "/products/ai-describe",
+            json={"name": "", "price": 1.99},
+        )
+        assert response.status_code == 422
+
+    def test_ai_describe_missing_required_fields_rejected(self):
+        """Test that missing required fields (name, price) are rejected with HTTP 422."""
+        # Missing price
+        response = client.post("/products/ai-describe", json={"name": "Apple"})
+        assert response.status_code == 422
+
+        # Missing name
+        response = client.post("/products/ai-describe", json={"price": 1.99})
+        assert response.status_code == 422
+
+    def test_ai_describe_response_has_description_key(self):
+        """Test that the response body conforms to the AIDescribeResponse schema."""
+        with patch("main.generate_product_description", return_value="Great product!"):
+            response = client.post(
+                "/products/ai-describe",
+                json={"name": "Tomato", "price": 0.99, "category": "Vegetables"},
+            )
+        assert response.status_code == 200
+        data = response.json()
+        # Exactly the schema: only "description" key
+        assert set(data.keys()) == {"description"}
+        assert isinstance(data["description"], str)
+        assert len(data["description"]) > 0
+
+    def test_ai_describe_passes_correct_arguments_to_client(self):
+        """Test that all request fields are forwarded correctly to generate_product_description."""
+        with patch("main.generate_product_description", return_value="desc") as mock_fn:
+            client.post(
+                "/products/ai-describe",
+                json={"name": "Whole Milk", "price": 3.49, "category": "Dairy"},
+            )
+        mock_fn.assert_called_once_with(name="Whole Milk", price=3.49, category="Dairy")

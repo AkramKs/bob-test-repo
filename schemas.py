@@ -31,3 +31,21 @@ class ProductResponse(ProductBase):
 
     class Config:
         from_attributes = True
+
+
+class AIDescribeRequest(BaseModel):
+    """Request body for the AI product description endpoint."""
+
+    name: str = Field(..., min_length=1, max_length=100, description="Name of the product")
+    price: float = Field(..., gt=0, description="Price of the product in USD")
+    category: Optional[str] = Field(
+        default="Other",
+        max_length=50,
+        description="Category of the product (e.g. Produce, Dairy). Defaults to 'Other'.",
+    )
+
+
+class AIDescribeResponse(BaseModel):
+    """Response body returned by the AI product description endpoint."""
+
+    description: str = Field(..., description="AI-generated marketing description for the product")
