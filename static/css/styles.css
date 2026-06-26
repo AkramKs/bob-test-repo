@@ -1,0 +1,306 @@
+/* =============================================
+   Grocery Store - Styles & Animations
+   ============================================= */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  color: #333;
+}
+
+/* --- App Container --- */
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.app-subtitle {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Product Form --- */
+.product-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.product-form input {
+  flex: 1 1 150px;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.product-form input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.product-form input::placeholder {
+  color: #adb5bd;
+}
+
+.product-form button {
+  padding: 0.6rem 1.5rem;
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.product-form button:hover {
+  background: #219a52;
+}
+
+.product-form button:active {
+  transform: scale(0.97);
+}
+
+/* --- Product Table --- */
+.product-table-wrapper {
+  overflow-x: auto;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table thead th {
+  text-align: left;
+  padding: 0.75rem;
+  background: #2c3e50;
+  color: #ecf0f1;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-table thead th:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.product-table thead th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.product-table tbody td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ecf0f1;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.product-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.product-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+/* --- Action Buttons --- */
+.btn-delete {
+  padding: 0.35rem 0.75rem;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}
+
+.btn-delete:active {
+  transform: scale(0.95);
+}
+
+/* --- Status Badges --- */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-available {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge-unavailable {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* --- Empty State --- */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #95a5a6;
+  font-size: 1rem;
+}
+
+/* --- Error Message --- */
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.error-message.visible {
+  display: block;
+}
+
+/* =============================================
+   Animations - Keyframes
+   ============================================= */
+
+/* Bounce In — used when a new product row appears */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  70% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Poof Out — used when deleting a product row */
+@keyframes poofOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* Shake — used for error feedback */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 50%, 90% {
+    transform: translateX(-4px);
+  }
+  30%, 70% {
+    transform: translateX(4px);
+  }
+}
+
+/* =============================================
+   Animation Utility Classes
+   ============================================= */
+
+.bounce-in {
+  animation: bounceIn 0.5s ease-out;
+}
+
+.poof-out {
+  animation: poofOut 0.4s ease-in forwards;
+  pointer-events: none;
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  .product-form {
+    flex-direction: column;
+  }
+
+  .product-table thead {
+    display: none;
+  }
+
+  .product-table tbody td {
+    display: block;
+    text-align: right;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .product-table tbody td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: #7f8c8d;
+  }
+
+  .product-table tbody tr {
+    display: block;
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 0.5rem;
+  }
+}
