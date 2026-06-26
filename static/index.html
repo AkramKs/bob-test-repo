@@ -7,7 +7,33 @@
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-  <h1>Loading...</h1>
+  <div id="joke-banner">
+    <span id="joke-text">Loading joke...</span>
+  </div>
+
+  <h1>🛒 Grocery Store</h1>
+
+  <div id="product-container">
+    <table id="product-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Unit</th>
+          <th>Stock</th>
+          <th>Available</th>
+        </tr>
+      </thead>
+      <tbody id="product-tbody">
+        <tr>
+          <td colspan="7" class="loading-msg">Loading products...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <script src="/static/js/app.js"></script>
 </body>
 </html>

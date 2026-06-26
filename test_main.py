@@ -45,7 +45,8 @@ class TestGroceryStoreAPI:
         response = client.get("/")
         assert response.status_code == 200
         assert "text/html" in response.headers["content-type"]
-        assert "<h1>Loading...</h1>" in response.text
+        assert 'id="joke-banner"' in response.text
+        assert "Grocery Store" in response.text
 
     def test_static_files_accessible(self):
         """Test that static files are served correctly."""
