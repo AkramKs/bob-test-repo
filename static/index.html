@@ -3,11 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grocery Store</title>
-  <link rel="stylesheet" href="/static/css/styles.css">
+  <title>Monkeys — The Clever Primates</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #1a4a1a 0%, #2d6a2d 40%, #4a8c3f 70%, #7ab648 100%);
+      color: #2c2c2c;
+      min-height: 100vh;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      width: 100%;
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: #2d6a2d;
+      letter-spacing: -0.5px;
+    }
+    header h1 span {
+      font-size: 2.2rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.15rem;
+      color: #555;
+      font-style: italic;
+    }
+
+    main {
+      max-width: 850px;
+      width: 90%;
+      margin: 2.5rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fffef9;
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+      border-left: 6px solid #f0a830;
+    }
+
+    .card h2 {
+      font-size: 1.7rem;
+      color: #3d7220;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+    }
+
+    .card ul {
+      list-style: "🐒  ";
+      padding-left: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .card li {
+      padding: 0.35rem 0;
+      font-size: 1.05rem;
+    }
+
+    .image-placeholder {
+      background: linear-gradient(135deg, #fee9b2, #fcd36c);
+      border-radius: 16px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-size: 5rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+      user-select: none;
+    }
+
+    .image-placeholder .emoji-row {
+      letter-spacing: 0.3rem;
+    }
+
+    .image-placeholder p {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      color: #5a4a1a;
+    }
+
+    .fun-fact {
+      background: #fef7e0;
+      border-left-color: #e6a020;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      color: #eaf7e0;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    footer a {
+      color: #ffd966;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 550px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .card {
+        padding: 1.4rem 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Loading...</h1>
-  <script src="/static/js/app.js"></script>
+
+  <header>
+    <h1><span>🐵</span> All About Monkeys <span>🐒</span></h1>
+    <p>Intelligent, social, and endlessly fascinating — meet our closest primate cousins.</p>
+  </header>
+
+  <main>
+
+    <section class="image-placeholder">
+      <div class="emoji-row">
+        🦧 &ensp; 🐒 &ensp; 🦍 &ensp; 🐵
+      </div>
+      <p><em>Monkey image placeholder — insert your favorite primate photo here!</em></p>
+    </section>
+
+    <section class="card">
+      <h2>What Are Monkeys?</h2>
+      <p>
+        Monkeys are haplorhine primates that make up the infraorder <strong>Simiiformes</strong>.
+        They are divided into two major groups: <strong>New World monkeys</strong> (Platyrrhini),
+        native to Central and South America, and <strong>Old World monkeys</strong> (Cercopithecidae),
+        found across Africa and Asia. With over <strong>260 living species</strong>, monkeys
+        inhabit tropical rainforests, savannas, mountainous regions, and even urban areas.
+      </p>
+      <p>
+        Most monkeys are arboreal (tree-dwelling) and possess forward-facing eyes, grasping
+        hands and feet, and relatively large brains compared to other mammals. Their diets
+        range from fruits, leaves, and flowers to insects, eggs, and small vertebrates.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Famous Monkey Species</h2>
+      <ul>
+        <li><strong>Mandrill</strong> (<em>Mandrillus sphinx</em>) — the largest monkey species, known for its vividly colored face and rump.</li>
+        <li><strong>Japanese Macaque</strong> (<em>Macaca fuscata</em>) — also called "snow monkeys," famous for bathing in hot springs during winter.</li>
+        <li><strong>Spider Monkey</strong> (<em>Ateles</em>) — a New World monkey with incredibly long limbs and a prehensile tail used as a fifth hand.</li>
+        <li><strong>Proboscis Monkey</strong> (<em>Nasalis larvatus</em>) — recognizable by its large, fleshy nose; an excellent swimmer native to Borneo.</li>
+        <li><strong>Golden Lion Tamarin</strong> (<em>Leontopithecus rosalia</em>) — a small, striking orange-gold monkey from Brazil's Atlantic coastal forests.</li>
+        <li><strong>Capuchin Monkey</strong> (<em>Cebus</em>) — highly intelligent tool-users often seen in research and films.</li>
+        <li><strong>Howler Monkey</strong> (<em>Alouatta</em>) — named for its incredibly loud vocalizations that can travel over three miles through dense forest.</li>
+      </ul>
+    </section>
+
+    <section class="card fun-fact">
+      <h2>🐒 Fun Monkey Facts</h2>
+      <ul>
+        <li>Monkeys use <strong>grooming</strong> not just for hygiene but to build social bonds and reduce group tension.</li>
+        <li>The <strong>pygmy marmoset</strong> is the world's smallest monkey, weighing only about 100 grams — roughly the weight of a deck of cards.</li>
+        <li>Capuchin monkeys have been observed using <strong>stone tools</strong> to crack open nuts, a behavior passed down through generations.</li>
+        <li>Unlike apes, most monkeys have <strong>tails</strong> — and many New World monkeys have <strong>prehensile</strong> tails that act like an extra limb.</li>
+        <li>A group of monkeys is called a <strong>troop</strong>, which can range from a handful to over a hundred individuals.</li>
+        <li>Monkeys appear in the mythology and folklore of cultures worldwide, from the Hindu god <strong>Hanuman</strong> to the Chinese <strong>Monkey King</strong> (Sun Wukong).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Monkeys vs. Apes — What's the Difference?</h2>
+      <p>
+        People often confuse monkeys with apes, but there are clear distinctions. Apes
+        (chimpanzees, gorillas, orangutans, gibbons, and humans) lack external tails, have
+        more complex brains, and possess a more upright body posture. Monkeys generally
+        have tails, smaller body-to-brain ratios, and a more horizontal, quadrupedal
+        walking style. If it has a tail, it's a monkey — not an ape!
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>🐾 Made with bananas and curiosity. Learn more at
+      <a href="https://en.wikipedia.org/wiki/Monkey" target="_blank" rel="noopener">Wikipedia — Monkey</a>.
+    </p>
+  </footer>
+
 </body>
 </html>
