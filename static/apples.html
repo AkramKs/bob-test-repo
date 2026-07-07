@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apples — Nature's Perfect Snack</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #6b1a1a 0%, #8b2c2c 40%, #b84444 70%, #d4784a 100%);
+      color: #2c2c2c;
+      min-height: 100vh;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      width: 100%;
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: #8b2c2c;
+      letter-spacing: -0.5px;
+    }
+    header h1 span {
+      font-size: 2.2rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.15rem;
+      color: #555;
+      font-style: italic;
+    }
+
+    nav {
+      margin-top: 0.8rem;
+    }
+
+    nav a {
+      color: #8b2c2c;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.3rem 0.8rem;
+      border: 2px solid #8b2c2c;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      background: #8b2c2c;
+      color: #fff;
+    }
+
+    main {
+      max-width: 850px;
+      width: 90%;
+      margin: 2.5rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fffef9;
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+      border-left: 6px solid #c0392b;
+    }
+
+    .card h2 {
+      font-size: 1.7rem;
+      color: #8b2c2c;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+    }
+
+    .card ul {
+      list-style: "🍎  ";
+      padding-left: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .card li {
+      padding: 0.35rem 0;
+      font-size: 1.05rem;
+    }
+
+    .image-placeholder {
+      background: linear-gradient(135deg, #fde8e0, #f5b7a8);
+      border-radius: 16px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-size: 5rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+      user-select: none;
+    }
+
+    .image-placeholder .emoji-row {
+      letter-spacing: 0.3rem;
+    }
+
+    .image-placeholder p {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      color: #5a2a1a;
+    }
+
+    .fun-fact {
+      background: #fef7e0;
+      border-left-color: #c0392b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      color: #f7e0e0;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    footer a {
+      color: #ffd966;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 550px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .card {
+        padding: 1.4rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><span>🍎</span> All About Apples <span>🍏</span></h1>
+    <p>Crisp, juicy, and packed with goodness — discover the world's most beloved fruit.</p>
+    <nav>
+      <a href="index.html">← Home</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="image-placeholder">
+      <div class="emoji-row">
+        🍎 &ensp; 🍏 &ensp; 🍎 &ensp; 🍏
+      </div>
+      <p><em>Apple image placeholder — insert your favorite apple photo here!</em></p>
+    </section>
+
+    <section class="card">
+      <h2>What Are Apples?</h2>
+      <p>
+        The apple (<em>Malus domestica</em>) is a pomaceous fruit from the rose family
+        (<strong>Rosaceae</strong>), alongside pears, plums, and cherries. Originating in
+        Central Asia, apples have been cultivated for over <strong>4,000 years</strong> and
+        are now grown on every continent except Antarctica.
+      </p>
+      <p>
+        There are more than <strong>7,500 known cultivars</strong> worldwide, ranging from
+        tiny crabapples to large baking varieties. China is the world's largest producer,
+        followed by the United States, Poland, and Turkey.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Popular Apple Varieties</h2>
+      <ul>
+        <li><strong>Red Delicious</strong> — deep red skin, mildly sweet; the classic lunchbox apple.</li>
+        <li><strong>Granny Smith</strong> — bright green, tart and crisp; perfect for pies and baking.</li>
+        <li><strong>Fuji</strong> — originally from Japan; super sweet, dense, and long-storing.</li>
+        <li><strong>Gala</strong> — small, thin-skinned, and honey-sweet; a favorite for fresh eating.</li>
+        <li><strong>Honeycrisp</strong> — explosively crisp with a balanced sweet-tart flavor; developed in Minnesota.</li>
+        <li><strong>Golden Delicious</strong> — yellow-gold, mellow and buttery; great for sauces and salads.</li>
+        <li><strong>Pink Lady</strong> (<em>Cripps Pink</em>) — distinctive pink blush, tangy-sweet, and slow to brown when sliced.</li>
+      </ul>
+    </section>
+
+    <section class="card fun-fact">
+      <h2>🍎 Fun Apple Facts</h2>
+      <ul>
+        <li>An apple is about <strong>25% air</strong>, which is why they float in water — perfect for bobbing!</li>
+        <li>It takes about <strong>36 apples</strong> to produce one gallon of apple cider.</li>
+        <li>The science of apple growing is called <strong>pomology</strong>.</li>
+        <li>Apple trees take <strong>4–5 years</strong> to produce their first fruit and can live for over a century.</li>
+        <li>The largest apple ever recorded weighed <strong>1.849 kg (4 lbs 1 oz)</strong>, grown in Japan in 2005.</li>
+        <li>There's a common saying: "<strong>An apple a day keeps the doctor away</strong>" — originating from 19th-century Wales.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Nutrition &amp; Health Benefits</h2>
+      <p>
+        A medium apple (about 180 grams) contains roughly <strong>95 calories</strong>,
+        25 grams of carbohydrates, and 4 grams of fiber — nearly <strong>17% of the
+        recommended daily fiber intake</strong>. Apples are rich in <strong>vitamin C</strong>,
+        potassium, and various antioxidants including <strong>quercetin</strong>, which has
+        been linked to reduced inflammation and improved heart health.
+      </p>
+      <p>
+        The majority of fiber and antioxidants are found in the <strong>peel</strong>, so
+        eating apples unpeeled maximizes nutritional benefit. Studies suggest regular apple
+        consumption may support gut health, lower the risk of type 2 diabetes, and contribute
+        to weight management thanks to their high water and fiber content.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>🍂 Made with orchard-fresh curiosity. Learn more at
+      <a href="https://en.wikipedia.org/wiki/Apple" target="_blank" rel="noopener">Wikipedia — Apple</a>.
+    </p>
+  </footer>
+
+</body>
+</html>
